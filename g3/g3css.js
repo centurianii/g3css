@@ -16,11 +16,7 @@
  * @constructor
  * @param {Object} 'win' the window object that defaults to 'window'.
  * @return {} None because we use a class library. Initialization is passed to
- * method 'init()'.
- * @function {g3.css.StyleSheetList.init}
- * @public
- * @param {Object} 'win' the window object that defaults to 'window'.
- * @return {} None.
+ * private function 'init()'.
  * @function {g3.css.StyleSheetList.getNative}
  * @public
  * @return {Object} Returns the native styleSheet list.
@@ -67,17 +63,12 @@ g3.css.StyleSheetList = g3.Class({
  * @param {styleSheet} 'style' a native styleSheet object.
  * @return {} None because we use a class library. Initialization is passed to
  * method 'init()'.
- * @function {g3.css.StyleSheet.init}
- * @public
- * @param {styleSheet} 'style' a native styleSheet object.
- * @return {StyleSheet} It is chainable.
  * @function {g3.css.StyleSheet.getNative}
  * @public
  * @return {Object} Returns the native styleSheet object.
  * @function {g3.css.StyleSheet.set}
  * @public
- * @param {String} 'prop' a property to set if accessor properties cannot be 
- * defined.
+ * @param {String} 'prop' a property to set if accessors cannot be defined.
  * @param {String} 'value' a value of the property that is set.
  * @return {} None.
  * @function {g3.css.StyleSheet.deleteRule}
@@ -284,18 +275,6 @@ g3.css.StyleSheet = g3.Class({
                this.cssText += this.cssRules[i].cssText + '\n';
             }
          }
-         /*
-         //take into account possible deletion failure
-         if(style.cssRules && (this.length > style.cssRules.length)){
-            this.length = style.cssRules.length;
-            this.cssRules.splice(ndx, 1);
-         }else if(style.rules && (this.length > style.rules.length)){
-            this.length = style.rules.length;
-            this.cssRules.splice(ndx, 1);
-         }else
-            result = false;
-         this.cssText = style.cssText;
-         */
       }
       return result;
    },
@@ -338,18 +317,6 @@ g3.css.StyleSheet = g3.Class({
                }
             }
          }
-         /*
-         //take into account possible insertion failure
-         if(style.cssRules && (this.length < style.cssRules.length)){
-            this.length = style.cssRules.length;
-            this.cssRules.splice(ndx, 0, new g3.css.Rule(style.cssRules[ndx]));
-         }else if(style.rules && (this.length < style.rules.length)){
-            this.length = style.rules.length;
-            this.cssRules.splice(ndx, 0, new g3.css.Rule(style.rules[ndx]));
-         }else
-            result = false;
-         this.cssText = style.cssText;
-         */
       }
       return result;
    },
@@ -367,10 +334,6 @@ g3.css.StyleSheet = g3.Class({
  * @param {Rule} 'rule' a native style rule object.
  * @return {} None because we use a class library. Initialization is passed to
  * method 'init()'.
- * @function {g3.css.Rule.init}
- * @public
- * @param {Rule} 'rule' a native style rule object.
- * @return {Rule} It is chainable.
  * @function {g3.css.Rule.getNative}
  * @public
  * @return {Object} Returns the native style rule object.
