@@ -123,6 +123,6 @@ Classes
 
 Evaluator test page
 ===================
-See: <link href="http://centurianii.github.io/g3css/">g3css</link>
+See: <a href="http://centurianii.github.io/g3css/">g3css</a>
 
 Have fun!
