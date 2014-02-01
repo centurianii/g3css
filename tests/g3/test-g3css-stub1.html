@@ -84,6 +84,33 @@ function test1(){alert('Hello 1');}
 <script id="test" src='test-g3css-stub1.js'></script>
 </head>
 <body onload="init()">
+<div id="description"><p>Construct of stub files:</p>
+<pre>
+   test-g3css-stub1.html (this file)
+      &lt;HEAD>
+         ...
+         &lt;link rel="stylesheet" type="text/css" media="all" href="test-g3css-stub-link1.css" /> 
+            |
+            |-> @import url("test-g3css-stub-link2.css") screen,print;
+            |       |
+            |       |->  @font-face {...}
+            |       |->  html {...}
+            |       :    ...
+            |-> .container_12 {...}
+            :
+         &lt;style media="screen,print">...&lt;/style>
+         &lt;style media="print">...&lt;/style>
+         &lt;script type="text/javascript">...&lt;/script>
+         &lt;script id="test" src='test-g3css-stub1.js'>&lt;/script>
+      &lt;/HEAD>
+      &lt;BODY>
+         ...
+         &lt;script type="text/javascript">...&lt;/script>
+         &lt;script id="test" src='test-g3css-stub2.js'>&lt;/script>
+      &lt;/BODY>
+</pre>
+</div>
+<hr />
    <div class="container_12">
       <div class="grid_12">
          <div class="grid"><div class="cell">

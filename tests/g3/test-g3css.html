@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta charset=utf-8>
-   <title>[Title]</title>
+   <title>Evaluator: Test g3.css classes</title>
    <!-- my source files (g3), necessary libraries (jquery) and my tests folder (tests):
       client
         :
@@ -26,39 +26,10 @@
         |  :  |- &lt;test-g3MyClass.html>
         :  :  :
    -->
-   <link rel="stylesheet" type="text/css" href="g3Evaluator.css">
+   <link rel="stylesheet" type="text/css" href="g3evaluator.css">
 </head>
 <body>
-<div id="title"><h1 contenteditable="false">Evaluator: Test g3.css classes<br></h1><span class="">[edit]</span></div>
-<div id="description"><p>We prepared the following files:</p>
-<ol>
-<li><code>test-g3css.html</code> the basic evaluator's GUI enhanced with the batch tests</li>
-<li><code>test-g3css-stub1.html</code> a test stub or, a framed page that contains linked, imported and embedded style sheets and linked and embedded script commands</li>
-<li><code>test-g3css-stub-link1.css</code> the first linked css file in the <code>head</code> of <code>test-g3css-stub1.html</code></li>
-<li><code>test-g3css-stub-link2.css</code> an imported style sheet in <code>test-g3css-stub-link1.css</code></li>
-<li><code>test-g3css-stub1.js</code> the first linked javascript file in the <code>head</code> of <code>test-g3css-stub1.html</code><sup><b>*</b></sup></li>
-<li><code>test-g3css-stub2.js</code> the second linked javascript file in the <code>body</code> of <code>test-g3css-stub1.html</code><sup><b>*</b></sup></li>
-</ol>
-<p><sup><b>*</b></sup><i>It was needed to conduct some tests for the methods that work with frame cloning of the <code>g3.evaluator</code> object which is now at version <code>0.1.3</code>.</i></p>
-<pre>
-   test-g3css-stub1.html
-      &lt;HEAD>
-         ...
-         &lt;link rel="stylesheet" type="text/css" media="all" href="test-g3css-stub-link1.css" />  
-         &lt;style media="screen,print">...&lt;/style>
-         &lt;style media="print">...&lt;/style>
-         &lt;script type="text/javascript">...&lt;/script>
-         &lt;script id="test" src='test-g3css-stub1.js'>&lt;/script>
-      &lt;/HEAD>
-      &lt;BODY>
-         ...
-         &lt;script type="text/javascript">...&lt;/script>
-         &lt;script id="test" src='test-g3css-stub2.js'>&lt;/script>
-      &lt;/BODY>
-</pre>
-</div>
-<hr />
-<div id="stub" class=""></div><form id="loadFrame">
+<div id="title"><h1 contenteditable="false">Evaluator: Test g3.css classes<br></h1><span class="">[edit]</span></div><div id="stub" class=""></div><form id="loadFrame">
 <fieldset>
    <legend class="hover"><b>Manage stub/frame</b></legend>
    <div style="display: none;" class="hide">
@@ -114,7 +85,7 @@
    </div>
 </fieldset>
 </form><hr><p><span style="padding: 0.4em 0.8em; color: #003380; background-color: #66a3ff;">Load any tab to blackboard</span><span><label class="label" for="panelHeights">Equal panel heights:</label><input id="panelHeights" type="checkbox"></span></p><div id="tabbedDataWrapper">
-<div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title enabled">g3.css.StyleSheetList</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//create a css list of the current window
+<div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title enabled">g3.css.StyleSheetList</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//create a css list of the current window
 var csslist = new g3.css.StyleSheetList();
 console.log(csslist);
 </pre></div><div class="data"><pre>//get the native css list
@@ -123,7 +94,7 @@ console.log(csslist.getNative(), 3);
 </pre></div><div class="data"><pre>//get item
 var csslist = new g3.css.StyleSheetList();
 console.log(csslist.item(0), 0);
-</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.StyleSheet</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor from frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): a linked style sheet</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled' in frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE) in frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media' in frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE) in frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule() in frame</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule() in frame</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheet</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
 var csslist = new g3.css.StyleSheetList();
 var sheet = csslist.item(0);
 console.log(sheet, 0);</pre></div><div class="data"><pre>//set 'disabled'
@@ -143,8 +114,8 @@ sheet.href = 'abc';
 //sheet.set('href', 'abc');
 console.log(sheet.href);
 //reverse:
-//sheet.href = 'g3Evaluator.css';
-//sheet.set('href', 'g3Evaluator.css');</pre></div><div class="data"><pre>//set 'media'
+//sheet.href = 'g3evaluator.css';
+//sheet.set('href', 'g3evaluator.css');</pre></div><div class="data"><pre>//set 'media'
 var csslist = new g3.css.StyleSheetList();
 var sheet = csslist.item(0);
 sheet.media = 'print';
@@ -188,7 +159,34 @@ sheet.replaceRule('#title span { cursor: pointer; color: orange; }', 2);
 
 //do not alter below this point...
 console.log('After length:' + sheet.length);
-console.log('After at index 2:' + sheet.cssRules[2].cssText);</pre></div><div class="data"><pre>//constructor from frame
+console.log('After at index 2:' + sheet.cssRules[2].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.Rule</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get descriptive type</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+var sheet = new g3.css.StyleSheetList().item(0);
+var rule = sheet.cssRules[0];
+console.log(rule, 0);</pre></div><div class="data"><pre>//native css rule
+var sheet = new g3.css.StyleSheetList().item(0);
+var rule = sheet.cssRules[0];
+console.log(rule.getNative(), 1);</pre></div><div class="data"><pre>//get descriptive type
+var sheet = new g3.css.StyleSheetList().item(0);
+var rule = sheet.cssRules[0];
+console.log(rule.getTypeName());</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheetList for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+//load frame: test-g3css-stub1.html
+//find frame window
+var framewin = $('#stub iframe').get(0).contentWindow;
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+console.log(csslist, 0);</pre></div><div class="data"><pre>//constructor
+//load frame: test-g3css-stub1.html
+//find frame window
+var framewin = $('#stub iframe').get(0).contentWindow;
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+console.log(csslist.getNative(), 1);</pre></div><div class="data"><pre>//constructor
+//load frame: test-g3css-stub1.html
+//find frame window
+var framewin = $('#stub iframe').get(0).contentWindow;
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+console.log(csslist.item(0), 0);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheet for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): a linked style sheet</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor from frame
 //load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
@@ -297,16 +295,7 @@ console.log('Before at index 4:' + sheet.cssRules[4].cssText);
 //do not alter below this point...
 console.log('After length:' + sheet.length);
 console.log('After at index 3:' + sheet.cssRules[3].cssText);
-console.log('After at index 4:' + sheet.cssRules[4].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.Rule</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get descriptive type</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor from frame: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor from frame: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">construct a style sheet from import rule</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
-var sheet = new g3.css.StyleSheetList().item(0);
-var rule = sheet.cssRules[0];
-console.log(rule, 0);</pre></div><div class="data"><pre>//native css rule
-var sheet = new g3.css.StyleSheetList().item(0);
-var rule = sheet.cssRules[0];
-console.log(rule.getNative(), 1);</pre></div><div class="data"><pre>//get descriptive type
-var sheet = new g3.css.StyleSheetList().item(0);
-var rule = sheet.cssRules[0];
-console.log(rule.getTypeName());</pre></div><div class="data"><pre>//load frame: test-g3css-stub1.html
+console.log('After at index 4:' + sheet.cssRules[4].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.Rule for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">construct a style sheet from import rule</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
 //constructor
@@ -340,14 +329,14 @@ var framewin = $('#stub iframe').get(0).contentWindow;
 //constructor
 var csslist = new g3.css.StyleSheetList(framewin);
 var sheet = csslist.item(0);
-var rule = sheet.cssRules[0];
+var rule = sheet.cssRules[1];
 console.log(rule.getTypeName(), 0);</pre></div><div class="data"><pre>//load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
 //constructor
 var csslist = new g3.css.StyleSheetList(framewin);
 var sheet = csslist.item(0);
-var rule = sheet.cssRules[1];
+var rule = sheet.cssRules[0];
 console.log(rule.getTypeName(), 0);</pre></div><div class="data"><pre>//load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
