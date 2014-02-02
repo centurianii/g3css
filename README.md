@@ -68,7 +68,7 @@ Going deeper
 
 Dependencies
 ============
-None.
+Just <code>my.class.js</code> (included).
 
 Classes
 =======
