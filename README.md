@@ -97,7 +97,7 @@ Classes
 <li>The css text: <code>sheet.cssText</code></li>
 <li>An array of <code>g3.css.Rule</code> objects: <code>sheet.cssRules</code></li>
 <li>The length of <code>sheet.cssRules</code>: <code>sheet.length</code></li>
-<li>The real <code>cssRules</code> array in IE8< starts at a number of places lower (0 for other browsers): <code>sheet.disposition</code></li>
+<li>The real <code>cssRules</code> array in &lt;=IE8 starts at index higher by (0 for other browsers): <code>sheet.disposition</code></li>
 <li>The disabled property: <code>sheet.disabled</code></li>
 <li>The href property: <code>sheet.href</code></li>
 <li>The media property: <code>sheet.media</code></li>
