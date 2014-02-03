@@ -1,5 +1,5 @@
-/*********************************CSSOM Objects*********************************
- * Normalizes cssom objects.
+/*********************************CSSOM classes*********************************
+ * Normalizes CSSOM objects.
  * @module {g3.css}
  *
  * @version 0.1
@@ -8,7 +8,7 @@
  ******************************************************************************/
 (function(g3, $, window, document, undefined){
    g3.css = g3.css || {};
-/*****************************Object StyleSheetList*****************************
+/*****************************Class StyleSheetList******************************
  * Public class 'g3.css.StyleSheetList'.
  * Normalizes Mozila's 'styleSheetList' or MS styleSheets list of all style 
  * sheets.
@@ -54,7 +54,7 @@ g3.css.StyleSheetList = g3.Class({
    }
 });
 
-/*******************************Object StyleSheet*******************************
+/*******************************Class StyleSheet********************************
  * Public class 'g3.css.StyleSheet'.
  * Normalizes Mozila's or MS 'styleSheet' object that represents a single style 
  * sheet.
@@ -325,7 +325,7 @@ g3.css.StyleSheet = g3.Class({
    }
 });
 
-/**********************************Object Rule**********************************
+/**********************************Class Rule***********************************
  * Public class 'g3.css.Rule'.
  * Normalizes Mozila's or MS 'Rule' object that represents a single style 
  * rule.
