@@ -9,6 +9,17 @@ What we have here is basically, three classes:
 </ul>
 <p>Native properties are exposed as custom object properties defined as accessors. So, setting properties on custom objects results in similar changes at the equivalent native ones. Pay attention though, that the other way round, changes on native style object properties through native code are <b>not</b> reflected in custom objects unless they are rebuilt!</p>
 <p>Similarly, reading the properties of the custom objects reflects the real values of the native ones.</p>
+<h3>Updates in v.0.4</h3>
+<ul>
+<li>now, filtering is capable through simple or chained(!) filters</li>
+<li>user can override the static function <code>filter</code> that belongs to class <code>g3.css.StyleSheetList</code></li>
+<li>we can move back and forth between different views of the sheet/rule collection based on filters or not and never re-build anything again(!)</li>
+<li>added the ability to build a full tree of style sheets and rules by passing on construction a second argument, <code>new g3.css.StyleSheetList(win, infinite)</code> (the first filter with <code>deep: true</code> will certainly make a deep re-build if not asked from start but only once during object's <code>g3.css.StyleSheetList</code> lifetime!)</li>
+<li>inserted rules re-build silently only the specific style sheet they belong to(!)</li>
+<li>complex filtering cases tested with success even with IE8 which interprets rules differently</li>
+<li>late construction of style sheets and rules on user demand still holds</li>
+<li>build-and-forget still holds (call <code>g3.css.StyleSheetList.get(window)</code>) except if user decides to re-build</li>
+</ul>
 
 Usage
 =====
@@ -55,6 +66,7 @@ Going deeper
 <p>Natively, the mechanism is applied with imported rules as in <code>rule00</code>. So, how can we scan a whole style sheet chain coming from imported links?</p>
 <p>Programmatically, we could have added a public property: <code>g3.css.Rule.styleSheet</code> that would be a new custom <code>g3.css.StyleSheet</code> object and that would be enough to start a new circle of <b>Level-2 ==> Level-3</b> objects!</p>
 <p>Instead, they are built on demand as follows: <code>var sheet00 = new g3.css.Rule.styleSheet(rule00.getNative())</code>, i.e. build the style sheet that comes from rule <code>rule00</code>. And that is enough to start a new circle of construction automatically that will stop when the rules of the new sheet are built!</p>
+<p>On v.0.4 this is done with a second argument <code>true</code> passed during construction: <code>new g3.css.StyleSheetList(win, infinite)</code> or, on the first filter with <code>deep: true</code>.</p>
 <pre>
   test-g3css-stub-link2.css
   L   / rule000 \   ... {...}
@@ -75,8 +87,13 @@ Classes
 <h2>1. g3.css.StyleSheetList</h2>
 <h3>Methods</h3>
 <ol>
-<li>Constructor: <code>var list = new g3.css.StyleSheetList(win)</code></li>
+<li>Constructor: <code>var list = new g3.css.StyleSheetList(win, infinite)</code></li>
 <li>Get a style sheet: <code>list.item(n)</code></li>
+<li>Filter rules with <code>list.filter(object)</code> where <code>object = {deep: <boolean>, href: <uri>, rule: <RegExp|String|Array[String]>, selector: <RegExp|String|Array[String]>, wordPart: <Boolean>, style: <Boolean>, link: <Boolean>, id: <String>}</code></li>
+<li>Get a 2D array with <code>list.getFilterRules()</code> where at index <code>i</code> a style sheet  <code>list.get(i)</code> is found with matched rules <code>list.get(i).cssRules[j]</code> that have indeces from the values of the array in index <code>i</code></li>
+<li>Stop filtering and return to full style sheet/rule view with <code>list.end()</code></li>
+<li>Get a constructed style sheet list with <code>g3.css.StyleSheetList.get(window, infinite)</code> or, force to create one if not already there, finally,</li>
+<li>build a new custom filter at <code>g3.css.StyleSheetList.filter(text, selectors, wordPart)</code> (see code comments).</li>
 </ol>
 <h3>Properties</h3>
 <ol>
