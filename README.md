@@ -18,7 +18,7 @@ What we have here is basically, three classes:
 <li>inserted rules re-build silently only the specific style sheet they belong to(!)</li>
 <li>complex filtering cases tested with success even with IE8 which interprets rules differently</li>
 <li>late construction of style sheets and rules on user demand still holds</li>
-<li>build-and-forget still holds (call <code>g3.css.StyleSheetList.get(window)</code>) except if user decides to re-build</li>
+<li>build-and-forget still holds (call <code>g3.css.StyleSheetList.get(window)</code>) except if user decides to re-build.</li>
 </ul>
 
 Usage
