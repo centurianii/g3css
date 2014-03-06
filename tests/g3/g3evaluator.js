@@ -12,7 +12,7 @@
  * Add necessary functions from 'g3.utils' namespace.
  */
 g3.utils = g3.utils || {};
-g3.utils.randomString = function(len, charSet){
+g3.utils.randomString = (typeof g3.utils.randomString === 'function')? g3.utils.randomString: function(len, charSet){
    charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
    var result = '', ndx;
    for (var i = 0; i < len; i++){
@@ -24,7 +24,7 @@ g3.utils.randomString = function(len, charSet){
 /*
  * deprecated
  */
-g3.utils.createScriptNode = function(text, tag, src, type, id, win){
+g3.utils.createScriptNode = (typeof g3.utils.createScriptNode === 'function')? g3.utils.createScriptNode: function(text, tag, src, type, id, win){
    var obj = text;
    //overwrite arguments in case of a first argument object
    if(typeof obj === 'object'){
@@ -74,7 +74,7 @@ g3.utils.createScriptNode = function(text, tag, src, type, id, win){
 /*
  * deprecated
  */
-g3.utils.createStyleNode = function(cssText, tag, media, type, id, win){
+g3.utils.createStyleNode = (typeof g3.utils.createStyleNode === 'function')? g3.utils.createStyleNode: function(cssText, tag, media, type, id, win){
    var obj = cssText;
    //overwrite arguments in case of a first argument object
    if(typeof obj === 'object'){
@@ -124,7 +124,7 @@ g3.utils.createStyleNode = function(cssText, tag, media, type, id, win){
 /*
  * deprecated
  */
-g3.utils.createLinkNode = function(tag, media, type, id, rel, href, win){
+g3.utils.createLinkNode = (typeof g3.utils.createLinkNode === 'function')? g3.utils.createLinkNode: function(tag, media, type, id, rel, href, win){
    var obj = tag;
    //overwrite arguments in case of a first argument object
    if(typeof obj === 'object' && !tag.nodeType){
@@ -270,8 +270,14 @@ g3.evaluator = (function(){
          try{
             eval(value);
          }catch(e){
-            alert(e);
+            //alert(e);
+            throw e;
          }
+      }
+      window.onerror = printError;
+      function printError(msg, url, line){
+         evaluator.console.log(msg+'\nat: '+url+'\nline: '+line);
+         return true;
       }
       
       /*
@@ -742,7 +748,7 @@ g3.evaluator = (function(){
           * generic console object with log function
           */
          console: {
-            pile: false,
+            pile: false, //pile writing
             log: function(value, n, force){
                //IE8 returns form with id="console"!
                if(console && console.log)

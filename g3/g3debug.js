@@ -5,7 +5,7 @@
  * 'value' for simple types or, 
  * '[depth] key -> value' for complex ones.
  *
- * @version 0.1.3
+ * @version 0.1.4
  * @author Scripto JS Editor by Centurian Comet.
  * @copyright MIT licence.
  */
@@ -14,7 +14,7 @@
  * Add necessary functions from 'g3.utils' namespace.
  */
    g3.utils = g3.utils || {};
-g3.utils.typeOf = function(value) {
+g3.utils.typeOf = (typeof g3.utils.typeOf === 'function')? g3.utils.typeOf : function(value) {
    var s = typeof value;
    if (s === 'object') {
       if (value) {
@@ -27,7 +27,7 @@ g3.utils.typeOf = function(value) {
    }
    return s;
 };
-g3.utils.isEmptyObject = function(obj){
+g3.utils.isEmptyObject = (typeof g3.utils.isEmptyObject === 'function')? g3.utils.isEmptyObject : function(obj){
    var result = true;
    if(obj === null)
       return result;
@@ -48,14 +48,14 @@ g3.utils.isEmptyObject = function(obj){
    }
    return result;
 };
-g3.utils.type = function (obj){
+g3.utils.type = (typeof g3.utils.type === 'function')? g3.utils.type : function (obj){
    if(obj === null)
       return 'null';
-   else if(obj === 'undefined')
+   else if(typeof obj === 'undefined')
       return 'undefined';
    return Object.prototype.toString.call(obj).match(/^\[object\s(.*)\]$/)[1].toLowerCase();
 };
-g3.utils.Array = {
+g3.utils.Array = (typeof g3.utils.Array === 'object')? g3.utils.Array : {
    indexOf: function(){
       if (!Array.prototype.indexOf || ([0, 1].indexOf(1, 2) != -1)){
          Array.prototype.indexOf = function (searchElement, fromIndex){
@@ -84,7 +84,7 @@ g3.utils.Array = {
    }
 };
 g3.utils.Array.indexOf();
-g3.utils.htmlList = function(type) {
+g3.utils.htmlList = (typeof g3.utils.htmlList === 'function')? g3.utils.htmlList : function(type) {
    if(!type || (g3.utils.typeOf(type) != 'string') || ((type.toLowerCase() != 'u') && 
      (type.toLowerCase() != 'o')) || (arguments.length <= 1))
       return false;
@@ -165,7 +165,9 @@ g3.utils.htmlList = function(type) {
    g3.debug = function(obj, maxDepth, force){ //construct with argument
       var tree = [], refs = [], max;
       refs.push( [ 0, obj ] );
-      if((maxDepth === 0) || ((g3.utils.typeOf(maxDepth) === 'number') && (maxDepth > 0)))
+      if((maxDepth === null) || (maxDepth === undefined))
+         max = 0;
+      else if((g3.utils.typeOf(maxDepth) === 'number') && (maxDepth >= 0))
          max = maxDepth;
       else
          max = -1;
@@ -356,9 +358,10 @@ g3.utils.htmlList = function(type) {
             }
             if(pos >= 0)
                arr[2] = '<span style="color: ' + ((circular)? 'red': 'blue') + '">' + arr[2] + '</span>';
-            //replace newlines in strings with breaks, '<br />'
-            if(arr[2] && (typeof arr[2] === 'string'))
-               arr[2] = arr[2].replace(/\n/g, '<br />');
+            //replace newlines in strings with breaks, '<br />' and '<' with '&lt;'
+            else if(arr[2] && (typeof arr[2] === 'string'))
+               arr[2] = arr[2].replace(/</gi, '&lt;').replace(/\n/g, '<br />');
+               //arr[2] = arr[2].replace(/\n/g, '<br />');
             var tmp ='';
             if(arr[0] !== null)
                tmp += '[' + arr[0] + '] ';
