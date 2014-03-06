@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>html stub for g3.css tests</title>
+   <meta name="description" content="html stub for testing g3.css classes">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="author" content="centurianii at github">
+   <link rel="stylesheet" type="text/css" media="all" href="test-g3css-stub-link1.css" />
+<style media="screen,print">
+/*
+ * =============================================
+ * One column: width &lt; 480px
+ * =============================================
+ */
+@media only screen and (max-width: 479px) {
+   /*defined as default*/
+}
+/*
+ * =============================================
+ * Two columns: 480px &lt;= width &lt; 768px
+ * =============================================
+ */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+   .grid {
+      width: 50%;
+   }
+   /*
+    * Clear row=1, col=2
+    * ------------------
+    */
+   .q_480_767_clear_12 {
+      clear: both;
+   }
+}
+/*
+ * =============================================
+ * Three columns: 768px &lt;= width
+ * =============================================
+ */
+@media only screen and (min-width: 768px) {
+   .grid {
+      width: 33.333%;
+   }
+   /*
+    * Clear row=1, col=3
+    * ------------------
+    */
+   .q_768_clear_13 {
+      clear: both;
+   }
+}
+</style>
+<style id="print" media="print">
+/*
+ * ===================
+ * Define Print Values
+ * ===================
+ */
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+@media print {
+   .grid {
+      width: 33.333%;
+   }
+   /*
+    * Clear row=1, col=3
+    * ------------------
+    */
+   .q_768_clear_13 {
+      clear: both;
+   }
+}
+</style>
+<script type="text/javascript">
+function test1(){alert('Hello 1');}
+</script>
+<script id="test" src='test-g3css-stub1.js'></script>
+</head>
+<body onload="init()">
+<div id="description"><p>Construct of stub files:</p>
+<pre>
+   test-g3css-stub1.html (this file)
+      &lt;HEAD>
+         ...
+         &lt;link rel="stylesheet" type="text/css" media="all" href="test-g3css-stub-link1.css" /> 
+            |
+            |-> @import url("test-g3css-stub-link2.css") screen,print;
+            |       |
+            |       |->  @font-face {...}
+            |       |->  html {...}
+            |       :    ...
+            |-> .container_12 {...}
+            :
+         &lt;style media="screen,print">...&lt;/style>
+         &lt;style id="print" media="print">...&lt;/style>
+         &lt;script type="text/javascript">...&lt;/script>
+         &lt;script id="test" src='test-g3css-stub1.js'>&lt;/script>
+      &lt;/HEAD>
+      &lt;BODY>
+         ...
+         &lt;script type="text/javascript">...&lt;/script>
+         &lt;script id="test" src='test-g3css-stub2.js'>&lt;/script>
+      &lt;/BODY>
+</pre>
+</div>
+<hr />
+   <div class="container_12">
+      <div class="grid_12">
+         <div class="grid"><div class="cell">
+<h2>Column 1</h2>
+<p>Donec venenatis ut felis non ornare. Sed nec dui sed orci interdum vestibulum. Quisque velit nibh, varius eu vulputate eget, ultricies non lorem. Nam condimentum mattis enim sed venenatis? Ut sit amet nisi consectetur nibh condimentum tristique. Donec in tortor eget dolor vehicula rhoncus pretium non quam. Sed convallis risus sed magna placerat posuere et ac turpis. Maecenas imperdiet diam diam. Integer porttitor, turpis eu dictum ultrices, urna magna malesuada nisl, non accumsan nisl libero nec est.</p>
+
+<p>Fusce pretium posuere sapien, sit amet faucibus lectus auctor a! Sed quis lorem et odio fringilla hendrerit. Nullam id dui a sapien placerat sollicitudin viverra eget sem. Cras ornare dictum nibh vitae ornare. Mauris ut elit non purus rutrum elementum. Integer et est interdum, blandit ligula ac; tempus erat. Ut suscipit lorem metus, ut aliquet velit iaculis ut. Morbi quis semper felis. Donec non vestibulum ligula! Pellentesque a nisi nisl!</p>
+
+<p>Mauris mattis ligula euismod sem commodo, sit amet fringilla elit vestibulum. Aliquam neque eros, cursus eget augue vitae, elementum bibendum justo. Donec a sapien eget dui fermentum tristique. Curabitur ac rutrum sapien, at aliquam quam. Mauris mollis tempor dui, eget tempus tortor. Sed ut feugiat ante. Fusce ut nisl dictum, ornare risus ut, fermentum nibh. Ut feugiat pellentesque tortor ac pharetra!</p>
+         </div></div>
+         <div class="grid"><div class="cell">
+<h2>Column 2</h2>
+<p>Curabitur non feugiat lacus, sit amet dapibus quam. Phasellus vel dolor nisl. Nulla turpis augue, tempus eu enim at, laoreet aliquet turpis. Aenean sed eleifend tellus! Vivamus in turpis fermentum tortor fringilla luctus. Fusce ut accumsan libero, a sodales nulla. Nulla a nulla posuere, posuere velit et, tempor libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse elementum molestie ullamcorper.</p>
+
+<p>In at augue eu massa malesuada interdum quis adipiscing ipsum. Sed sed nisl nisi. Nam luctus ante velit, ac volutpat tellus fermentum vitae. Nulla adipiscing ligula mauris, sit amet pharetra nulla aliquet sit amet. Etiam in enim quis libero imperdiet pretium vel tempor mi! Etiam lectus neque; scelerisque quis lorem vitae, euismod auctor massa! Donec mattis libero ut diam tempus, non pretium augue volutpat. Aliquam volutpat lacus ac elit viverra, non pulvinar justo ultrices. Praesent imperdiet, leo sit amet viverra pretium, elit elit consequat tortor, a ultricies risus ligula id nisl.</p>
+         </div></div>
+         <div class="clear q_480_767_clear_12"></div>
+         <div class="grid"><div class="cell">
+<h2>Column 3</h2>
+<p>Aenean auctor sollicitudin iaculis! Nullam fermentum, enim eget luctus vestibulum, felis leo pharetra elit, bibendum consectetur risus metus ut ante. Phasellus convallis enim ut nulla luctus, eu vulputate felis feugiat. Maecenas euismod sem at luctus fringilla. Etiam tincidunt sapien neque, ac tincidunt mauris cursus a. Nulla elementum non metus quis tincidunt? Integer nec justo ut tellus dictum vulputate sed sit amet felis? Maecenas sed pretium eros. Duis sit amet risus iaculis, imperdiet leo non, adipiscing enim. Donec faucibus rutrum lorem sit amet blandit.</p>
+         </div></div>
+         <div class="clear q_768_clear_13"></div>
+      </div>
+   </div>
+<script type="text/javascript">
+function test3(){alert('Hello 3');}
+</script>
+<script id="test" src='test-g3css-stub2.js'></script>
+<script>
+function init(){
+   //are we in a frame?
+   if(window.parent)
+      window.parent.g3.evaluator.getInstance().calledFromFrame();
+}
+</script>
+</body>
+</html>

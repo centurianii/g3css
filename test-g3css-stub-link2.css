@@ -1,0 +1,40 @@
+@font-face {
+ font-family: 'BPdotsSquare';
+ src: url('assets/BPdotsSquare.eot');
+ src: url('assets/BPdotsSquare.eot?#iefix') format('embedded-opentype'),
+ url('assets/BPdotsSquare.woff') format('woff'),
+ url('assets/BPdotsSquare.ttf') format('truetype'),
+ url('assets/BPdotsSquare.svg#BPdotsSquare') format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+
+html {
+  background: #ffffff;
+  font-size: 62.5%;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: #f3f5f6;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: orange;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
+  color: #000000;
+}
+
+h2, h3 {
+   font-family: "BPdotsSquare", Helvetica, Arial, sans-serif;
+}
+
+@media print {
+   body {
+      font-size: 8px;
+   }
+}

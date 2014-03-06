@@ -1,0 +1,81 @@
+@import url("test-g3css-stub-link2.css") screen,print;
+
+/* 
+ * Container
+ * ----------
+ */
+.container_12 {
+   margin-left: auto;
+   margin-right: auto;
+   width: 92%;
+   margin-left: 4%;
+   margin-right: 4%;
+}
+
+/* 
+ * Grids general
+ * -------------
+ */
+.grid, .grid_12 {
+   vertical-align: baseline;
+   background: transparent;
+   margin: 0;
+   border: 0;
+   display: inline;
+   float: left;
+}
+
+/*
+ * =============================================
+ * One column: any width
+ * =============================================
+ */
+.grid, .grid_12 {
+   width: 100%;
+}
+
+/*
+ * Cell
+ * ----
+ */
+.cell {
+   display: block;
+   position: relative;
+   width: auto;
+   border: 0;
+   padding: 0;
+   margin: 10px 5px;
+   background: transparent;
+}
+
+/*
+ * Clear Container
+ * ---------------
+ */
+.container_12:before,
+.container_12:after {
+   content: " ";
+   display: block;
+   overflow: hidden;
+   visibility: hidden;
+   font-size: 0;
+   line-height: 0;
+   width: 0;
+   height: 0;
+}
+
+.container_12:after {
+   clear: both;
+}
+
+/*
+ * Clear Floated Elements
+ * ----------------------
+ */
+.clear {
+   display: block;
+   overflow: hidden;
+   visibility: hidden;
+   width: 0;
+   height: 0;
+}
