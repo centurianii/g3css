@@ -90,7 +90,7 @@ Classes
 <ol>
 <li>Constructor: <code>var list = new g3.css.StyleSheetList(win, infinite)</code></li>
 <li>Get a style sheet: <code>list.item(n)</code></li>
-<li>Filter rules with <code>list.filter(object)</code> where <code>object = {deep: <boolean>, href: <uri>, rule: <RegExp|String|Array[String]>, selector: <RegExp|String|Array[String]>, wordPart: <Boolean>, style: <Boolean>, link: <Boolean>, id: <String>}</code></li>
+<li>Filter rules with <code>list.filter(object)</code> where <code>object = {deep: &lt;boolean>, href: &lt;uri>, rule: &lt;RegExp|String|Array[String]>, selector: &lt;RegExp|String|Array[String]>, wordPart: &lt;Boolean>, style: &lt;Boolean>, link: &lt;Boolean>, id: &lt;String>}</code></li>
 <li>Get a 2D array with <code>list.getFilterRules()</code> where at index <code>i</code> a style sheet  <code>list.get(i)</code> is found with matched rules <code>list.get(i).cssRules[j]</code> that have indeces from the values of the array in index <code>i</code></li>
 <li>Stop filtering and return to full style sheet/rule view with <code>list.end()</code></li>
 <li>Get a constructed style sheet list with <code>g3.css.StyleSheetList.get(window, infinite)</code> or, force to create one if not already there, finally,</li>
