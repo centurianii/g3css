@@ -25,6 +25,7 @@ Usage
 =====
 <p>Now, when you create a <code>g3.css.StyleSheetList</code> object, all sub-objects of type  <code>g3.css.StyleSheet</code> and <code>g3.css.Rule</code> are created automatically resulting in a 3-level structure and <b>no</b> deeper!</p>
 <p>Of course, in reality it can go much deeper but it's very simple to proceed from 4-level and higher with the use of method <code>g3.css.Rule.getNative</code></p>
+<p>On v.0.4 this is done with a second argument <code>true</code> passed during construction: <code>new g3.css.StyleSheetList(win, infinite)</code> or, on the first filter with <code>deep: true</code>.</p>
 <p>Imagine an html file:</p>
 <pre>
    test-g3css-stub1.html
