@@ -57,23 +57,16 @@
    <input value="Add" type="button"><input value="Remove" type="button">
    </div>
 </fieldset>
-</form>
-<form id="libraries">
+</form><form id="libraries">
 <fieldset>
    <legend>Load library</legend>
-<label class="label" for="OebPl">g3class</label><input id="OebPl" value="my.class.js" type="checkbox"><br>
-<label class="label" for="oHYFG">g3css</label><input id="oHYFG" value="g3css.js" type="checkbox"><br>
-</fieldset>
-</form>
-<p><span><label class="label" for="boardHeights">Equal board heights:</label>
-<input id="boardHeights" type="checkbox"></span></p>
-<div id="boardWrapper">
+<label class="label" for="OebPl">g3class</label><input id="OebPl" value="../../g3/my.class.js" type="checkbox"><br><label class="label" for="oHYFG">g3css</label><input id="oHYFG" value="../../g3/g3css.js" type="checkbox"><br></fieldset></form><p><span><label class="label" for="boardHeights">Equal board heights:</label><input id="boardHeights" type="checkbox"></span></p><div id="boardWrapper">
 <form class="" id="blackboard">
 <fieldset>
    <legend><b>Blackboard</b></legend>
    <label class="label" for="title">Tab title:</label><input id="title" size="40" type="text"><br>
    <textarea style="width: 100%;" rows="10" wrap="virtual"></textarea><br>
-   <input value="Execute!" type="button"><input disabled="" value="Save" type="button"><input disabled="" value="Save to a new tab" type="button"><input value="Clear" type="button"><br>
+   <input value="Execute!" type="button"><input disabled="" value="Save" type="button"><input value="Save to a new tab" type="button"><input value="Clear" type="button"><br>
 </fieldset>
 </form>
 <form class="" id="console">
@@ -92,7 +85,7 @@
    </div>
 </fieldset>
 </form><hr><p><span style="padding: 0.4em 0.8em; color: #003380; background-color: #66a3ff;">Load any tab to blackboard</span><span><label class="label" for="panelHeights">Equal panel heights:</label><input id="panelHeights" type="checkbox"></span></p><div id="tabbedDataWrapper">
-<div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title enabled">g3.css.StyleSheetList</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//create a css list of the current window
+<div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title enabled">g3.css.StyleSheetList</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//create a css list of the current window
 var csslist = new g3.css.StyleSheetList();
 console.log(csslist);
 </pre></div><div class="data"><pre>//get the native css list
@@ -101,7 +94,7 @@ console.log(csslist.getNative(), 3);
 </pre></div><div class="data"><pre>//get item
 var csslist = new g3.css.StyleSheetList();
 console.log(csslist.item(0), 0);
-</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.StyleSheet</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheet</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
 var csslist = new g3.css.StyleSheetList();
 var sheet = csslist.item(0);
 console.log(sheet, 0);</pre></div><div class="data"><pre>//set 'disabled'
@@ -166,7 +159,7 @@ sheet.replaceRule('#title span { cursor: pointer; color: orange; }', 2);
 
 //do not alter below this point...
 console.log('After length:' + sheet.length);
-console.log('After at index 2:' + sheet.cssRules[2].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.Rule</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get descriptive type</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+console.log('After at index 2:' + sheet.cssRules[2].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.Rule</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get descriptive type</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
 var sheet = new g3.css.StyleSheetList().item(0);
 var rule = sheet.cssRules[0];
 console.log(rule, 0);</pre></div><div class="data"><pre>//native css rule
@@ -175,7 +168,7 @@ var rule = sheet.cssRules[0];
 console.log(rule.getNative(), 1);</pre></div><div class="data"><pre>//get descriptive type
 var sheet = new g3.css.StyleSheetList().item(0);
 var rule = sheet.cssRules[0];
-console.log(rule.getTypeName());</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.StyleSheetList for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">end()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getFilterRules()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter(): no argument</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'}).end()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'}).item(0)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link2'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: true, href: 'link2'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: true, href: 'link2'}).item(0)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">A deep font face rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">A deep media rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">Analyze a deep font face rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">Analyze a deep media rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: false/true, href: 'link2'}).end().item(0).cssRules[0]</div><div class="close">X</div></div><div class="tabBar"><div class="tab">find '.grid' selector (deep = false)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">find '.grid' selector (deep = true)</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
+console.log(rule.getTypeName());</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheetList for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get native css list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get a style sheet out of the list</div><div class="close">X</div></div><div class="tabBar"><div class="tab">end()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getFilterRules()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter(): no argument</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'}).end()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link1'}).item(0)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({href: 'link2'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: true, href: 'link2'})</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: true, href: 'link2'}).item(0)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">A deep font face rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">A deep media rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">Analyze a deep font face rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">Analyze a deep media rule object</div><div class="close">X</div></div><div class="tabBar"><div class="tab">filter({deep: false/true, href: 'link2'}).end().item(0).cssRules[0]</div><div class="close">X</div></div><div class="tabBar"><div class="tab">find '.grid' selector (deep = false)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">find '.grid' selector (deep = true)</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor
 //load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
@@ -341,7 +334,7 @@ console.log(csslist.item(2).cssRules[0].cssText, 0);
 
 console.log('-----------');
 console.log('at sheet[3], rule[0]:');
-console.log(csslist.item(3).cssRules[0].cssText, 0);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.StyleSheet for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): a linked style sheet</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor from frame
+console.log(csslist.item(3).cssRules[0].cssText, 0);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.StyleSheet for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): a linked style sheet</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'disabled'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'href' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'media'</div><div class="close">X</div></div><div class="tabBar"><div class="tab">set 'title' (IE)</div><div class="close">X</div></div><div class="tabBar"><div class="tab">insertRule() - deleteRule()</div><div class="close">X</div></div><div class="tabBar"><div class="tab">replaceRule()</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//constructor from frame
 //load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
@@ -450,7 +443,7 @@ console.log('Before at index 4:' + sheet.cssRules[4].cssText);
 //do not alter below this point...
 console.log('After length:' + sheet.length);
 console.log('After at index 3:' + sheet.cssRules[3].cssText);
-console.log('After at index 4:' + sheet.cssRules[4].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">g3.css.Rule for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">construct a style sheet from import rule</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//load frame: test-g3css-stub1.html
+console.log('After at index 4:' + sheet.cssRules[4].cssText);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">g3.css.Rule for frame</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">constructor: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">constructor: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">getNative(): style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: style rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">get type: import rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">construct a style sheet from import rule</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//load frame: test-g3css-stub1.html
 //find frame window
 var framewin = $('#stub iframe').get(0).contentWindow;
 //constructor
@@ -500,12 +493,182 @@ var csslist = new g3.css.StyleSheetList(framewin);
 var sheet = csslist.item(0);
 var rule = sheet.cssRules[0];
 var isheet = new g3.css.StyleSheet(rule.getNative());
-console.log(isheet, 0);</pre></div></div></div></div></div>
+console.log(isheet, 0);</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData height"><div class="titleBar"><p class="title">Advanced chained filters</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">link-to-selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">selector-to-link</div><div class="close">X</div></div><div class="tabBar"><div class="tab">selector-to-rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">selector-to-selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">rule-to-selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">rule-to-rule</div><div class="close">X</div></div><div class="tabBar"><div class="tab">href-to-selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">selector-to-href</div><div class="close">X</div></div><div class="tabBar"><div class="tab">broken href+selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">broken rule+selector</div><div class="close">X</div></div><div class="tabBar"><div class="tab">style</div><div class="close">X</div></div><div class="tabBar"><div class="tab">mix link+style</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//link-to-selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on link:');
+console.log(csslist.end().filter({deep: true, link: true}).getFilterRules());
+console.log('sheets: '+csslist.length);
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({selector: 'container'}).getFilterRules());
+</pre></div><div class="data"><pre>//selector-to-link
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//selector-to-link
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on selector:');
+console.log(csslist.end().filter({deep: true, selector: 'grid'}).getFilterRules());
+
+console.log('filtered rules more on link:');
+console.log(csslist.filter({link: true}).getFilterRules());
+</pre></div><div class="data"><pre>//selector-to-rule
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on selector:');
+console.log(csslist.end().filter({deep: true, selector: 'grid'}).getFilterRules());
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({rule: 'width'}).getFilterRules());
+</pre></div><div class="data"><pre>//selector-to-selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on selector:');
+console.log(csslist.end().filter({deep: true, selector: '12'}).getFilterRules());
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({selector: 'container'}).getFilterRules());
+</pre></div><div class="data"><pre>//rule-to-selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on rule:');
+console.log(csslist.end().filter({deep: true, rule: 'width'}).getFilterRules());
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({selector: 'grid'}).getFilterRules());
+</pre></div><div class="data"><pre>//rule-to-rule
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on rule:');
+console.log(csslist.end().filter({deep: true, rule: 'width'}).getFilterRules());
+
+console.log('filtered rules more on rule:');
+console.log(csslist.filter({rule: '50%'}).getFilterRules());
+</pre></div><div class="data"><pre>//href-to-selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on href:');
+console.log(csslist.end().filter({deep: true, href: 'css'}).getFilterRules());
+console.log('sheets: '+csslist.length);
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({selector: 'container'}).getFilterRules());
+</pre></div><div class="data"><pre>//selector-to-href
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on selector:');
+console.log(csslist.end().filter({deep: true, selector: 'grid'}).getFilterRules());
+
+console.log('filtered rules more on selector:');
+console.log(csslist.filter({href: 'css'}).getFilterRules());
+</pre></div><div class="data"><pre>//broken href+selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on href + selector:');
+console.log(csslist.end().filter({deep: true, href: 'css', selector: 'grid'}).getFilterRules());
+console.log('sheets: '+csslist.length);
+
+console.log('chain to apply:');
+console.log(csslist.end().filter({deep: true, href: 'css'}).filter({selector: 'grid'}).getFilterRules());
+console.log('sheets: '+csslist.length);
+</pre></div><div class="data"><pre>//broken rule+selector
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on rule + selector:');
+console.log(csslist.end().filter({deep: true, rule: 'width', selector: 'grid'}).getFilterRules());
+console.log('sheets: '+csslist.length);
+
+console.log('chain to apply:');
+console.log(csslist.end().filter({deep: true, rule: 'width'}).filter({selector: 'grid'}).getFilterRules());
+console.log('sheets: '+csslist.length);
+</pre></div><div class="data"><pre>//style
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on style:');
+console.log(csslist.end().filter({deep: true, style: true}).getFilterRules());
+console.log('sheets: '+csslist.length);
+</pre></div><div class="data"><pre>//mix link+style
+//load frame: test-g3css-stub1.html
+//find frame window
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+//constructor
+var csslist = new g3.css.StyleSheetList(framewin);
+
+console.log('filtered rules on link+style:');
+console.log(csslist.end().filter({deep: true, link: true, style: true}).getFilterRules());
+console.log('sheets: '+csslist.length);
+</pre></div></div></div></div></div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script> window.jQuery || document.write('<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"><\/script>')</script>
 <script>window.jQuery || document.write('<script src="../../jquery/jquery-1.10.2.js"><\/script>')</script>
-<script src="g3debug.js"></script>
+<script src="../../g3/g3debug.js"></script>
 <script src="g3evaluator.js"></script>
 <script>
 $(function(){

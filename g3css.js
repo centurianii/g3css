@@ -42,10 +42,12 @@ g3.css = g3.css || {};
  * @function {g3.css.StyleSheetList.filter}
  * @public
  * @param {Object} 'obj' a custom object with parameters that define how this
- * list will be filtered
+ * list will be filtered. There are some rules to follow: 1) 'href', 'rule' and
+ * 'selector' should belong to different filters (not mixed) and 2) 'style',
+ * 'link' or 'id' can be mixed freely with all the others.
  * - 'deep': if true, it searches deeper than the first-level embedded or linked 
  *           style sheets,
- * - 'href': filters linked or imported style sheets based on the file name, 
+ * - 'href': filters linked or imported style sheets based on the file name,
  * - 'rule': a string, an array of strings or a regular expression that filters 
  *           the css text of rules (arrays are converted to regular expressions 
  *           connected with or),
@@ -58,12 +60,9 @@ g3.css = g3.css || {};
  *           the following: character, number, dash (-) or underscore (_), user 
  *           can alter these interpretations by defining his own static 
  *           filtering function,
- * - 'style': if true, it searches only the embedded style sheets (must be 
- *           combined with 'href' and 'deep' or 'rule' or 'selector'),
- * - 'link': if true, it searches only the linked style sheets (must be combined
- *           with 'href' or 'rule' or 'selector'),
- * - 'id':   filters only embedded or linked style sheets with this id (must be 
- *           combined with 'href' or 'rule' or 'selector').
+ * - 'style': if true, it searches only the embedded style sheets,
+ * - 'link': if true, it searches only the linked style sheets,
+ * - 'id':   filters only embedded or linked style sheets with this id.
  * @return {g3.css.StyleSheetList} Returns a new custom g3.css.StyleSheetList
  * object.
  * @function {g3.css.StyleSheetList.end}
@@ -216,7 +215,8 @@ g3.css.StyleSheetList = g3.Class({
          }
       };
       
-      //private function: recursively search for href in style sheet rules -> imported style sheet rules
+      //private function: recursively search for href in style sheet rules type of imported
+      //recursion happens only on first filter: after that arrays represent the flattened tree!
       function styleSheetHref(custom_list, native_list, custom_sheet, href){
          try{
             for(var i=0; i < custom_sheet.cssRules.length; i++){
@@ -234,32 +234,51 @@ g3.css.StyleSheetList = g3.Class({
       }
       
       //private function: (recursively) search for a text pattern in style sheet rules -> imported style sheet rules
-      function styleSheetRules(custom_list, native_list, rules, custom_sheet, where, str, deep, wordPart){
+      //recursion happens only on first filter: after that arrays represent the flattened tree!
+      function styleSheetRules(custom_list, native_list, rules, custom_sheet, initial_rules, where, str, deep, wordPart){
          try{
             var text, tmp = [];
-            for(var i=0; i < custom_sheet.cssRules.length; i++){
-               if(where === 'rule')
-                  text = custom_sheet.cssRules[i].cssText;
-               else if(where === 'selector')
-                  text = custom_sheet.cssRules[i].selector;
-               else
-                  return;
+            //recursion only on first filter as the result is a flattened tree!
+            if(!state.filtered)
+               if(deep)
+                  for(var i=0; i < custom_sheet.cssRules.length; i++)
+                     //if(custom_sheet.cssRules[i].getTypeName() !== 'STYLE_RULE')
+                     if((custom_sheet.cssRules[i].getTypeName() !== 'STYLE_RULE') && (custom_sheet.cssRules[i].styleSheet))
+                        styleSheetRules(custom_list, native_list, rules, custom_sheet.cssRules[i].styleSheet, initial_rules, where, str, deep, wordPart);
+            //no previous filtering in rules has been done: push rules!
+            if(initial_rules.length === 0){
+               for(var i=0; i < custom_sheet.cssRules.length; i++){
+                  if(where === 'rule')
+                     text = custom_sheet.cssRules[i].cssText;
+                  else if(where === 'selector')
+                     text = custom_sheet.cssRules[i].selector;
+                  else
+                     return;
 
-               if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart)))
-               //if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (text.search(str) > -1))
-                  tmp.push(i); //index of custom rule
+                  if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart)))
+                  //if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (text.search(str) > -1))
+                     tmp.push(i); //index of custom rule
+               }
+            //previous filtering has been done: restrict search!
+            }else{
+               for(var i=0; i < initial_rules.length; i++){
+                  if(where === 'rule')
+                     text = custom_sheet.cssRules[initial_rules[i]].cssText;
+                  else if(where === 'selector')
+                     text = custom_sheet.cssRules[initial_rules[i]].selector;
+                  else
+                     return;
+
+                  if((custom_sheet.cssRules[initial_rules[i]].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart)))
+                  //if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (text.search(str) > -1))
+                     tmp.push(initial_rules[i]); //index of custom rule
+               }
             }
             if(tmp.length){
                custom_list.push(custom_sheet);
                native_list.push(custom_sheet.getNative());
                rules.push(tmp);
             }
-
-            if(deep)
-               for(var i=0; i < custom_sheet.cssRules.length; i++)
-                  //if(custom_sheet.cssRules[i].getTypeName() !== 'STYLE_RULE')
-                  if((custom_sheet.cssRules[i].getTypeName() !== 'STYLE_RULE') && (custom_sheet.cssRules[i].styleSheet))
-                     styleSheetRules(custom_list, native_list, rules, custom_sheet.cssRules[i].styleSheet, where, str, deep, wordPart);
          }catch(e){
             alert('Failed to recursively search for a rule pattern in imported rules: ' + e);
          }
@@ -283,25 +302,30 @@ g3.css.StyleSheetList = g3.Class({
          //make filters chainable!
          //copy previous 'global' private variable 'state' or 'initial' to a local one
          var _initial = self.copy();
-         //2nd and next filters won't use 'build()' again
-         if(!state.filtered)
-            state.filtered = true;
+         
+         //(re)create 'global' private variable 'state': our end results!
          state.custom_list = [];
          state.native_list = [];
          state.filterRules = [];
-         
-         //search: href
+
+         //search: href (linked and imported) or linked
          if(arg['href']){
+            var tmp;
             for(var i=0; i < _initial.custom_list.length; i++){
                if(
                   (_initial.custom_list[i].getTypeName() === 'LINKED_SHEET') && 
                   (_initial.custom_list[i].ownerNode.href.indexOf(arg['href']) > -1) &&
-                  (!arg['id'] || (_initial.custom_list[i].ownerNode.id === arg['id'])) &&
-                  (!arg['style'] || arg['link'])
-                 ){
+                  (!arg['id'] || (_initial.custom_list[i].ownerNode.id === arg['id']))
+               ){
                   state.custom_list.push(_initial.custom_list[i]);
                   state.native_list.push(_initial.custom_list[i].getNative());
-               }else if(arg['deep'] && !arg['id'])
+                  if((state.filtered) && (_initial.filterRules.length > 0)){
+                     tmp = [];
+                     for(var j=0; j < _initial.filterRules[i].length; j++)
+                        tmp.push(_initial.filterRules[i][j]);
+                     state.filterRules.push(tmp);
+                  }
+               }else if(arg['deep'] && !arg['id'] && !arg['link'] && !arg['style'] && !state.filtered)
                   styleSheetHref(state.custom_list, state.native_list, _initial.custom_list[i], arg['href']);
             }
          //search all the rule (css text) or just the selector
@@ -309,17 +333,43 @@ g3.css.StyleSheetList = g3.Class({
             var where = (arg['rule'])? 'rule': 'selector';
             var str = (arg['rule'])? arg['rule']: arg['selector'];
             for(var i=0; i < _initial.custom_list.length; i++)
-               if(   (arg['id'] && (_initial.custom_list[i].ownerNode.id === arg['id'])) ||
-                     (!arg['id'] &&
-                        (  (!arg['style'] && !arg['link']) || 
-                           (arg['style'] && _initial.custom_list[i].getTypeName() === 'STYLE_SHEET') || 
-                           (arg['link'] && _initial.custom_list[i].getTypeName() === 'LINKED_SHEET')
-                        )
+               if((arg['id'] && (_initial.custom_list[i].ownerNode.id === arg['id'])) ||
+                  (!arg['id'] &&
+                     (  (!arg['style'] && !arg['link']) || 
+                        (arg['style'] && _initial.custom_list[i].getTypeName() === 'STYLE_SHEET') || 
+                        (arg['link'] && _initial.custom_list[i].getTypeName() === 'LINKED_SHEET')
                      )
                   )
-                  styleSheetRules(state.custom_list, state.native_list, state.filterRules, _initial.custom_list[i], where, str, arg['deep'], arg['wordPart']);
+               )
+                  if(_initial.filterRules.length > 0)
+                     styleSheetRules(state.custom_list, state.native_list, state.filterRules, _initial.custom_list[i], _initial.filterRules[i], where, str, arg['deep'], arg['wordPart']);
+                  else
+                     styleSheetRules(state.custom_list, state.native_list, state.filterRules, _initial.custom_list[i], [], where, str, arg['deep'], arg['wordPart']);
+         //search linked, embedded style sheets
+         }else if(arg['link'] || arg['style'] || arg['id']){
+            var tmp;
+            for(var i=0; i < _initial.custom_list.length; i++){
+               if(
+                  (arg['style'] && (_initial.custom_list[i].getTypeName() === 'STYLE_SHEET')) || 
+                  (arg['link'] && (_initial.custom_list[i].getTypeName() === 'LINKED_SHEET')) || 
+                  (arg['id'] && (_initial.custom_list[i].ownerNode.id === arg['id']))
+               ){
+                  state.custom_list.push(_initial.custom_list[i]);
+                  state.native_list.push(_initial.custom_list[i].getNative());
+                  if((state.filtered) && (_initial.filterRules.length > 0)){
+                     tmp = [];
+                     for(var j=0; j < _initial.filterRules[i].length; j++)
+                        tmp.push(_initial.filterRules[i][j]);
+                     state.filterRules.push(tmp);
+                  }
+               }
+            }
          }
-
+         
+         //2nd and next filters won't use 'build()' again nor they'll search recursively
+         if(!state.filtered)
+            state.filtered = true;
+         
          self.length = state.length = (state.native_list.length)? state.native_list.length: null;
          return self;
       };
@@ -420,9 +470,9 @@ g3.css.StyleSheetList = g3.Class({
             tmp = tmp.replace(/\|=/g, '\\|=');
             tmp = tmp.replace(/\$=/g, '\\$=');
             tmp = tmp.replace(/\*=/g, '\\*=');
-            //accept chainable selectors, e.g.: .tip.animated
+            //accept chainable selectors, e.g.: .tip.animated:after
             if(!wordPart)
-               tmp += '[^A-Za-z_\\-0-9]';
+               tmp += '[^A-Za-z_\\-0-9]*';
             reg += tmp + '|';
          }
          reg = reg.slice(0, -1);
