@@ -9,12 +9,19 @@ What we have here is basically, three classes:
 </ul>
 <p>Native properties are exposed as custom object properties defined as accessors. So, setting properties on custom objects results in similar changes at the equivalent native ones. Pay attention though, that the other way round, changes on native style object properties through native code are <b>not</b> reflected in custom objects unless they are rebuilt!</p>
 <p>Similarly, reading the properties of the custom objects reflects the real values of the native ones.</p>
+<h3>Updates in v.0.5</h3>
+<ul>
+<li>a bug in static method <code>g3.css.StyleSheetList.filter()</code> was corrected</li>
+<li>custom errors <code>g3.Error</code> are thrown instead of <code>alert()</code>.</li>
+</ul>
 <h3>Updates in v.0.4</h3>
 <ul>
 <li>now, filtering is capable through simple or chained(!) filters</li>
 <li>user can override the static function <code>filter</code> that belongs to class <code>g3.css.StyleSheetList</code></li>
 <li>we can move back and forth between different views of the sheet/rule collection based on filters or not and never re-build anything again(!)</li>
 <li>added the ability to build a full tree of style sheets and rules by passing on construction a second argument, <code>new g3.css.StyleSheetList(win, infinite)</code> (the first filter with <code>deep: true</code> will certainly make a deep re-build if not asked from start but only once during object's <code>g3.css.StyleSheetList</code> lifetime!)</li>
+<li>if you really want to re-built it just call <code>new g3.css.StyleSheetList(win, infinite)</code></li>
+<li>if you don't want to re-built it just call <code>g3.css.StyleSheetList.get(win)</code></li>
 <li>inserted rules re-build silently only the specific style sheet they belong to(!)</li>
 <li>complex filtering cases tested with success even with IE8 which interprets rules differently</li>
 <li>late construction of style sheets and rules on user demand still holds</li>
@@ -81,7 +88,7 @@ Going deeper
 
 Dependencies
 ============
-Just <code>my.class.js</code> (included).
+Just <code>my.class.js</code> and my custom error class <code>g3Error.js</code>(included).
 
 Classes
 =======
@@ -90,7 +97,17 @@ Classes
 <ol>
 <li>Constructor: <code>var list = new g3.css.StyleSheetList(win, infinite)</code></li>
 <li>Get a style sheet: <code>list.item(n)</code></li>
-<li>Filter rules with <code>list.filter(object)</code> where <code>object = {deep: &lt;boolean>, href: &lt;uri>, rule: &lt;RegExp|String|Array[String]>, selector: &lt;RegExp|String|Array[String]>, wordPart: &lt;Boolean>, style: &lt;Boolean>, link: &lt;Boolean>, id: &lt;String>}</code></li>
+<li>Filter rules with <code>list.filter(object)</code> where 
+<pre>object = {deep: &lt;boolean>, 
+href: &lt;uri>, 
+rule: &lt;RegExp|String|Array[String]>, 
+selector: &lt;RegExp|String|Array[String]>, 
+declaration: &lt;RegExp|String|Array[String]>, 
+wordPart: &lt;Boolean>, 
+style: &lt;Boolean>, 
+link: &lt;Boolean>, 
+id: &lt;String>}</pre>
+</li>
 <li>Get a 2D array with <code>list.getFilterRules()</code> where at index <code>i</code> a style sheet  <code>list.get(i)</code> is found with matched rules <code>list.get(i).cssRules[j]</code> that have indeces from the values of the array in index <code>i</code></li>
 <li>Stop filtering and return to full style sheet/rule view with <code>list.end()</code></li>
 <li>Get a constructed style sheet list with <code>g3.css.StyleSheetList.get(window, infinite)</code> or, force to create one if not already there, finally,</li>
