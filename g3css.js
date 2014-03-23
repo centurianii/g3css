@@ -2,7 +2,7 @@
  * Normalizes CSSOM objects.
  * @module {g3.css}
  *
- * @version 0.4 Takes the highest number of all containing sub-classes.
+ * @version 0.5 Takes the highest number of all containing sub-classes.
  * @author Scripto JS Editor by Centurian Comet.
  * @copyright MIT licence.
  ******************************************************************************/
@@ -50,16 +50,19 @@ g3.css = g3.css || {};
  * - 'href': filters linked or imported style sheets based on the file name,
  * - 'rule': a string, an array of strings or a regular expression that filters 
  *           the css text of rules (arrays are converted to regular expressions 
- *           connected with or),
+ *           connected with 'or'),
  * - 'selector': a string, an array of strings or a regular expression that  
  *           filters the selector part of rules (arrays are converted to regular 
- *           expressions connected with or),
+ *           expressions connected with 'or'),
+ * - 'declaration': a string, an array of strings or a regular expression that 
+ *           filters the declaration text of rules (arrays are converted to 
+ *           regular expressions connected with 'or'),
  * - 'wordPart': if true, it filters rules based on the given key values of 
- *           'rule' or 'selector' considering them as sub-strings otherwise, it 
- *           behaves to this key values as sub-strings that do not end in any of
- *           the following: character, number, dash (-) or underscore (_), user 
- *           can alter these interpretations by defining his own static 
- *           filtering function,
+ *           'rule', 'selector' or 'declaration' considering them as sub-strings 
+ *           otherwise, it behaves to this key values as sub-strings that do not 
+ *           end in any of the following: character, number, dash (-) or 
+ *           underscore (_), user can alter these interpretations by defining 
+ *           his own static filtering function,
  * - 'style': if true, it searches only the embedded style sheets,
  * - 'link': if true, it searches only the linked style sheets,
  * - 'id':   filters only embedded or linked style sheets with this id.
@@ -115,9 +118,9 @@ g3.css = g3.css || {};
  * @return {Boolean} Returns true when we want to add a rule at the results of 
  * public instance method 'filter()' otherwise, it should return false. It is
  * used internally by instance method 'filter()' when the argument has keys 
- * 'rule' or 'selector'.
+ * 'rule', 'selector' or 'declaration'.
  *
- * @version 0.4
+ * @version 0.5
  * @author Scripto JS Editor by Centurian Comet.
  * @copyright MIT licence.
  * @reference
@@ -229,7 +232,8 @@ g3.css.StyleSheetList = g3.Class({
                }
             }
          }catch(e){
-            alert('Failed to recursively search for href in imported rules: ' + e);
+            //alert('Failed to recursively search for href in imported rules: ' + e);
+            throw new g3.Error('Failed to recursively search for href \'' + href + '\' in imported rules.', 'Error.css.g3', e);
          }
       }
       
@@ -252,12 +256,15 @@ g3.css.StyleSheetList = g3.Class({
                      text = custom_sheet.cssRules[i].cssText;
                   else if(where === 'selector')
                      text = custom_sheet.cssRules[i].selector;
+                  else if(where === 'declaration')
+                     text = custom_sheet.cssRules[i].declaration;
                   else
                      return;
 
-                  if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart)))
+                  if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart))){
                   //if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (text.search(str) > -1))
                      tmp.push(i); //index of custom rule
+                  }
                }
             //previous filtering has been done: restrict search!
             }else{
@@ -266,12 +273,14 @@ g3.css.StyleSheetList = g3.Class({
                      text = custom_sheet.cssRules[initial_rules[i]].cssText;
                   else if(where === 'selector')
                      text = custom_sheet.cssRules[initial_rules[i]].selector;
+                  else if(where === 'declaration')
+                     text = custom_sheet.cssRules[initial_rules[i]].declaration;
                   else
                      return;
-
-                  if((custom_sheet.cssRules[initial_rules[i]].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart)))
+                  if((custom_sheet.cssRules[initial_rules[i]].getTypeName() === 'STYLE_RULE') && (g3.css.StyleSheetList.filter(text, str, wordPart))){
                   //if((custom_sheet.cssRules[i].getTypeName() === 'STYLE_RULE') && (text.search(str) > -1))
                      tmp.push(initial_rules[i]); //index of custom rule
+                  }
                }
             }
             if(tmp.length){
@@ -280,7 +289,8 @@ g3.css.StyleSheetList = g3.Class({
                rules.push(tmp);
             }
          }catch(e){
-            alert('Failed to recursively search for a rule pattern in imported rules: ' + e);
+            //alert('Failed to recursively search for a rule pattern in imported rules: ' + e);
+            throw new g3.Error('Failed to recursively search for the rule pattern \'' + str + '\' at \'' + where + '\' in imported rules.', 'Error.css.g3', e);
          }
       }
       
@@ -307,7 +317,7 @@ g3.css.StyleSheetList = g3.Class({
          state.custom_list = [];
          state.native_list = [];
          state.filterRules = [];
-
+         
          //search: href (linked and imported) or linked
          if(arg['href']){
             var tmp;
@@ -329,9 +339,19 @@ g3.css.StyleSheetList = g3.Class({
                   styleSheetHref(state.custom_list, state.native_list, _initial.custom_list[i], arg['href']);
             }
          //search all the rule (css text) or just the selector
-         }else if(arg['rule'] || arg['selector']){
-            var where = (arg['rule'])? 'rule': 'selector';
-            var str = (arg['rule'])? arg['rule']: arg['selector'];
+         }else if(arg['rule'] || arg['selector'] || arg['declaration']){
+            var where,
+                str;
+            if(arg['rule']){
+               where = 'rule';
+               str = arg['rule'];
+            }else if(arg['selector']){
+               where = 'selector';
+               str = arg['selector'];
+            }else{
+               where = 'declaration';
+               str = arg['declaration'];
+            }
             for(var i=0; i < _initial.custom_list.length; i++)
                if((arg['id'] && (_initial.custom_list[i].ownerNode.id === arg['id'])) ||
                   (!arg['id'] &&
@@ -365,7 +385,7 @@ g3.css.StyleSheetList = g3.Class({
                }
             }
          }
-         
+
          //2nd and next filters won't use 'build()' again nor they'll search recursively
          if(!state.filtered)
             state.filtered = true;
@@ -451,7 +471,7 @@ g3.css.StyleSheetList = g3.Class({
          if(!text)
             return false;
          if(g3.utils.type(selectors) === 'regexp')
-            return (text.search(reg) > -1);
+            return (text.search(selectors) > -1);
          else if(g3.utils.type(selectors) === 'string')
             selectors = [selectors];
          else if(!g3.utils.type(selectors) === 'array')
@@ -709,7 +729,8 @@ g3.css.StyleSheet = g3.Class({
             result = true;
          }
       }catch(e){
-         alert('Failed to delete rule: ' + e);
+         //alert('Failed to delete rule: ' + e);
+         throw new g3.Error('Failed to delete rule at index ' + ndx + '.', 'Error.css.g3', e);
       }
       if(result){
          --this.length;
@@ -744,7 +765,8 @@ g3.css.StyleSheet = g3.Class({
             result = true;
          }
       }catch(e){
-         alert('Failed to insert rule: ' + e);
+         //alert('Failed to insert rule: ' + e);
+         throw new g3.Error('Failed to insert rule \'' + rule + '\' at index ' + ndx + '.', 'Error.css.g3', e);
       }
       if(result){
          this.init(this, this.getNative(), this.infinite);
