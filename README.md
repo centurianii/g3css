@@ -108,7 +108,7 @@ style: &lt;Boolean>,
 link: &lt;Boolean>, 
 id: &lt;String>}</pre>
 </li>
-<li>Get a 2D array with <code>list.getFilterRules()</code> where at index <code>i</code> a style sheet  <code>list.get(i)</code> is found with matched rules <code>list.get(i).cssRules[j]</code> that have indeces from the values of the array in index <code>i</code></li>
+<li>Get a 2D array with <code>list.getFilterRules()</code> where at index <code>i</code> a style sheet  <code>list.get(i)</code> is found with matched rules <code>list.get(i).cssRules[j]</code> that have indeces the values of the array <code>list.getFilterRules()[i]</code></li>
 <li>Stop filtering and return to full style sheet/rule view with <code>list.end()</code></li>
 <li>Get a constructed style sheet list with <code>g3.css.StyleSheetList.get(window, infinite)</code> or, force to create one if not already there, finally,</li>
 <li>build a new custom filter at <code>g3.css.StyleSheetList.filter(text, selectors, wordPart)</code> (see code comments).</li>
