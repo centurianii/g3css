@@ -12,6 +12,7 @@ What we have here is basically, three classes:
 <h3>Updates in v.0.5</h3>
 <ul>
 <li>a bug in static method <code>g3.css.StyleSheetList.filter()</code> was corrected</li>
+<li>filter on <code>declaration</code> part is possible</li>
 <li>custom errors <code>g3.Error</code> are thrown instead of <code>alert()</code>.</li>
 </ul>
 <h3>Updates in v.0.4</h3>
